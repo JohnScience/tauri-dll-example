@@ -14,9 +14,9 @@ fn greet(name: &str) -> String {
 #[tauri::command]
 fn print_hello() {
     unsafe {
-        let lib = libloading::Library::new("my_dll.dll").unwrap();
+        let lib = libloading::Library::new("UnityPlayer.dll").unwrap();
         type UnityMainFunc = unsafe extern "C" fn(*mut c_void, *mut c_void, *mut c_void, c_int);
-        let func: libloading::Symbol<UnityMainFunc> = lib.get(b"hello").unwrap();
+        let func: libloading::Symbol<UnityMainFunc> = lib.get(b"UnityMain").unwrap();
 
         let hinstance = std::ptr::null_mut();
         let hprevinstance = std::ptr::null_mut();
